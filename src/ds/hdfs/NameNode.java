@@ -145,6 +145,8 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             p.getBlocksList().sort(new RepSorter());
             ArrayList<ProtoHDFS.Block> newBlocksList = p.getBlocksList().stream()
                     .filter(ProtoHDFS.Block::isInitialized)
+                    .filter(block -> Duration.between(this.heartbeatTimestamps.get(block.getBlockMeta().getDataId()),
+                            Instant.now()).toMillis() < 5000)
                     .collect(Collectors.toCollection(ArrayList::new));
 
             pipeLineBuilder.addAllBlocks(newBlocksList);
@@ -232,7 +234,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
             ArrayList<ProtoHDFS.NodeMeta> activeDataNodes = dataNodesList.stream()
                     .filter(nodeMeta -> Duration.between(heartbeatTimestamps.get(nodeMeta.getId()),
-                            Instant.now()).toMillis() < 3000)
+                            Instant.now()).toMillis() < 5000)
                     .collect(Collectors.toCollection(ArrayList::new));
             Collections.shuffle(dataNodesList);
             List<ProtoHDFS.NodeMeta> selectedDataNodes = activeDataNodes.subList(0, repFactor);
@@ -381,7 +383,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         Properties props = new Properties();
         File file = new File("namenode.properties");
         try{
-            String nodeName = UUID.randomUUID().toString();
+            String nodeName = "DaNameNode";
             InetAddress inetAddress = InetAddress.getLocalHost();
             String nodeIp = inetAddress.getHostAddress();
             int nodePort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);

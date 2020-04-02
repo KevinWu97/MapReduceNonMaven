@@ -72,9 +72,10 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         int blockNumber = blockMeta.getBlockNumber();
         int repNumber = blockMeta.getRepNumber();
         String blockName = fileName + "_" + blockNumber + "_" + repNumber;
+        String blockPath = "./" + this.dataId + "/" + blockName;
 
-        if(this.blockMetas.containsKey(blockName)){
-            byte[] blockBytes = Files.readAllBytes(Paths.get(blockName));
+        if(this.blockMetas.containsKey(blockPath)){
+            byte[] blockBytes = Files.readAllBytes(Paths.get(blockPath));
             String blockContents = new String(blockBytes);
 
             ProtoHDFS.Block.Builder blockBuilder = ProtoHDFS.Block.newBuilder();
@@ -174,7 +175,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         }
 
         String blockName = fileName + "_" + blockNumber + "_" + repNumber;
-        File file = new File(blockName);
+        File file = new File("./" + this.dataId + "/" + blockName);
         FileOutputStream fileOutputStream;
         if(file.exists() || file.createNewFile()){
             fileOutputStream = new FileOutputStream(file);
@@ -229,7 +230,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         Properties prop = new Properties();
         try{
             // Bind data node to registry
-            String dataNodeId = UUID.randomUUID().toString();
+            String dataNodeId = InetAddress.getLocalHost().getHostAddress();
             String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
             int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
 
@@ -237,6 +238,56 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             DataNode newDataNode = (args.length == 0) ? new DataNode(dataNodeId, dataNodeIp) :
                     new DataNode(dataNodeId, dataNodeIp, dataPort);
             serverRegistry.bind(dataNodeId, newDataNode);
+
+            // Now create directory to store all the blocks on this data node
+            File dataNodeDir = new File("./" + dataNodeId);
+            if(dataNodeDir.exists()){
+                // If data node directory already exists, that means the data node has failed before and is restarting
+                File[] dataNodeFiles = dataNodeDir.listFiles();
+                assert dataNodeFiles != null;
+                ProtoHDFS.BlockMeta.Builder blockMetaBuilder = ProtoHDFS.BlockMeta.newBuilder();
+                for(File f : dataNodeFiles){
+                    if(f.isFile()){
+                        String blockName = f.getName();
+                        int secondUnderIndex = -1;
+                        int firstUnderIndex = -1;
+                        for(int i = blockName.length() - 1; i >= 0; i--){
+                            if(blockName.charAt(i) == '_' && secondUnderIndex == -1){
+                                secondUnderIndex = i;
+                            }else if(blockName.charAt(i) == '_'){
+                                firstUnderIndex = i;
+                                break;
+                            }
+                        }
+
+                        String fileName = blockName.substring(0, firstUnderIndex);
+                        int blockNumber = Integer.parseInt(blockName.substring(firstUnderIndex + 1, secondUnderIndex));
+                        int repNumber = Integer.parseInt(blockName.substring(secondUnderIndex + 1));
+                        String dataId = newDataNode.dataId;
+                        String dataIp = newDataNode.dataIp;
+                        int port = newDataNode.dataPort;
+
+                        blockMetaBuilder.setFileName(fileName);
+                        blockMetaBuilder.setBlockNumber(blockNumber);
+                        blockMetaBuilder.setRepNumber(repNumber);
+                        blockMetaBuilder.setDataIp(dataId);
+                        blockMetaBuilder.setDataIp(dataIp);
+                        blockMetaBuilder.setPort(port);
+                        blockMetaBuilder.setInitialized(true);
+                        ProtoHDFS.BlockMeta blockMeta = blockMetaBuilder.build();
+                        blockMetaBuilder.clear();
+
+                        newDataNode.blockMetas.putIfAbsent(blockName, blockMeta);
+                    }
+                }
+            }else{
+                // If data node directory does not exist, then create the directory
+                boolean dirCreated = dataNodeDir.mkdir();
+                if(!dirCreated){
+                    // If the data node directory has not been created, throw exception and stop the thing
+                    throw new Exception("Failed to create data node directory");
+                }
+            }
 
             System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
 
@@ -253,7 +304,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
             scheduledExecutorService.scheduleAtFixedRate(
                     new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
-                    0, 5, TimeUnit.SECONDS);
+                    0, 2, TimeUnit.SECONDS);
         }catch(Exception e){
             System.out.println("An error has occurred: " + e.getMessage());
         }

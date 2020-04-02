@@ -248,7 +248,7 @@ public class Client {
 
                     // Need to fix here. Doesn't actually read the block
                     if(hasMissingBlock){
-                        System.out.println("Error: File " + hdfsFile + " corrupted when reading to " + localFile);
+                        System.out.println("Error: File " + hdfsFile + " can not be read. Data nodes dead");
                     }else{
                         // Get list of blocks. Then send read request to the data nodes containing each block
                         List<ProtoHDFS.Block> blockList = repsList.stream()
