@@ -17,7 +17,7 @@ public class ConfigureNameNode {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
 
             InetAddress inetAddress = InetAddress.getLocalHost();
-            String nodeName = UUID.randomUUID().toString();
+            String nodeName = "DaNameNode";
             String nodeIp = inetAddress.getHostAddress();
             String port;
             if(args.length == 0){

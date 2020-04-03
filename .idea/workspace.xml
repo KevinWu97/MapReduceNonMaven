@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d29e9a7-e5e9-4e29-a745-5219508b991b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Kevin_Wu.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/DataNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/DataNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/ConfigureNameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/ConfigureNameNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585795389283</updated>
       <workItem from="1585795392412" duration="1357000" />
-      <workItem from="1585797465180" duration="9836000" />
+      <workItem from="1585797465180" duration="12947000" />
     </task>
     <servers />
   </component>
