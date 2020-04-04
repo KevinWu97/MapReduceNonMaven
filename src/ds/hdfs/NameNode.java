@@ -16,6 +16,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
@@ -412,10 +415,15 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             props.store(fileOutputStream, null);
 
             Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
-            serverRegistry.bind(nodeName,
-                    (args.length == 0) ? new NameNode(nodeName, nodeIp) : new NameNode(nodeName, nodeIp, nodePort));
+            NameNode newNameNode =
+                    (args.length == 0) ? new NameNode(nodeName, nodeIp) : new NameNode(nodeName, nodeIp, nodePort);
+            serverRegistry.bind(nodeName, newNameNode);
 
             System.out.println("Name Node " + nodeName + " is running on host " + nodeIp + " port " + nodePort);
+
+            ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+            scheduledExecutorService.scheduleAtFixedRate(
+                    new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
 
         }catch(Exception e){
             System.out.println("Error occurred when starting the Name Node: " + e.getMessage());
