@@ -31,12 +31,29 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
     protected String nameIp;
     protected int port;
 
-    protected NameNode() throws RemoteException {
+    protected NameNode(String nodeId, String nodeIp) throws RemoteException {
         super();
+        this.requestsFulfilled = new ConcurrentHashMap<>();
+        this.dataNodeMetas = new ConcurrentHashMap<>();
+        this.heartbeatTimestamps = new ConcurrentHashMap<>();
+        this.dataNodeBlockMetas = new ConcurrentHashMap<>();
+        this.fileHandles = new ConcurrentHashMap<>();
+        this.fileLocks = new ConcurrentHashMap<>();
+        this.nameId = nodeId;
+        this.nameIp = nodeIp;
     }
 
-    protected NameNode(int port) throws RemoteException {
+    protected NameNode(String nodeId, String nodeIp, int port) throws RemoteException {
         super(port);
+        this.requestsFulfilled = new ConcurrentHashMap<>();
+        this.dataNodeMetas = new ConcurrentHashMap<>();
+        this.heartbeatTimestamps = new ConcurrentHashMap<>();
+        this.dataNodeBlockMetas = new ConcurrentHashMap<>();
+        this.fileHandles = new ConcurrentHashMap<>();
+        this.fileLocks = new ConcurrentHashMap<>();
+        this.nameId = nodeId;
+        this.nameIp = nodeIp;
+        this.port = port;
     }
 
     @Override
@@ -395,7 +412,8 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             props.store(fileOutputStream, null);
 
             Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
-            serverRegistry.bind(nodeName, (args.length == 0) ? new NameNode() : new NameNode(nodePort));
+            serverRegistry.bind(nodeName,
+                    (args.length == 0) ? new NameNode(nodeName, nodeIp) : new NameNode(nodeName, nodeIp, nodePort));
 
             System.out.println("Name Node " + nodeName + " is running on host " + nodeIp + " port " + nodePort);
 
