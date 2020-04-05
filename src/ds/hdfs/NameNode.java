@@ -292,6 +292,8 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         ProtoHDFS.FileHandle newFileHandle = fileHandleBuilder.build();
         fileHandleBuilder.clear();
 
+        this.fileHandles.putIfAbsent(fileName, newFileHandle);
+
         ProtoHDFS.Response.Builder responseBuilder = ProtoHDFS.Response.newBuilder();
         responseBuilder.setResponseId(requestId);
         responseBuilder.setResponseType(ProtoHDFS.Response.ResponseType.SUCCESS);
