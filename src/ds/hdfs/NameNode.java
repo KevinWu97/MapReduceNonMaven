@@ -402,19 +402,14 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
     public static void main(String[] args){
         // Starts up the name node server
-        Properties props = new Properties();
-        File file = new File("namenode.properties");
+        Properties prop = new Properties();
+        File propFile = new File("namenode.properties");
         try{
-            String nodeName = "DaNameNode";
-            InetAddress inetAddress = InetAddress.getLocalHost();
-            String nodeIp = inetAddress.getHostAddress();
-            int nodePort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            props.setProperty("server_name", nodeName);
-            props.setProperty("server_ip", nodeIp);
-            props.setProperty("server_port", String.valueOf(nodePort));
-            props.store(fileOutputStream, null);
+            FileInputStream fileInputStream = new FileInputStream(propFile);
+            prop.load(fileInputStream);
+            String nodeName = prop.getProperty("server_name");
+            String nodeIp = prop.getProperty("server_ip");
+            int nodePort = Integer.parseInt(prop.getProperty("server_port"));
 
             Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
             NameNode newNameNode =
