@@ -401,7 +401,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
     }
 
     public static void main(String[] args){
-        // Starts up the name node server and configures properties of the namenode
+        // Starts up the name node server
         Properties props = new Properties();
         File file = new File("namenode.properties");
         try{
