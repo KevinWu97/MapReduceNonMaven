@@ -420,6 +420,14 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             scheduledExecutorService.scheduleAtFixedRate(
                     new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
 
+            while(true){
+                if(newNameNode.heartbeatTimestamps.isEmpty()){
+                    System.out.println("No heartbeats yet");
+                }else{
+                    System.out.println(Collections.list(newNameNode.heartbeatTimestamps.keys()));
+                }
+            }
+
         }catch(Exception e){
             System.out.println("Error occurred when starting the Name Node: " + e.getMessage());
         }
