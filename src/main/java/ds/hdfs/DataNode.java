@@ -284,7 +284,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                         blockMetaBuilder.setFileName(fileName);
                         blockMetaBuilder.setBlockNumber(blockNumber);
                         blockMetaBuilder.setRepNumber(repNumber);
-                        blockMetaBuilder.setDataIp(dataNodeId);
+                        blockMetaBuilder.setDataId(dataNodeId);
                         blockMetaBuilder.setDataIp(dataNodeIp);
                         blockMetaBuilder.setPort(dataPort);
                         blockMetaBuilder.setInitialized(true);
