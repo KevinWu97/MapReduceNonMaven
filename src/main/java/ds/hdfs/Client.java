@@ -158,6 +158,7 @@ public class Client {
             String closeRequestId = UUID.randomUUID().toString();
             requestBuilder.setRequestId(closeRequestId);
             requestBuilder.setRequestType(ProtoHDFS.Request.RequestType.CLOSE);
+            requestBuilder.setFileHandle(fileHandle);
             ProtoHDFS.Request closeRequest = requestBuilder.buildPartial();
             requestBuilder.clear();
 

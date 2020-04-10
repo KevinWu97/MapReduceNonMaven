@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9d29e9a7-e5e9-4e29-a745-5219508b991b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ds/hdfs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ds/hdfs/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ds/hdfs/DataNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ds/hdfs/DataNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ds/hdfs/NameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ds/hdfs/NameNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ds/hdfs/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ds/hdfs/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ds/hdfs/NameNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ds/hdfs/NameNode.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +55,7 @@
       <recent name="C:\Users\Kevin Wu\IdeaProjects\MapReduceNonMaven\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientStore">
+  <component name="RunManager" selected="Application.NameNode">
     <configuration name="ClientStore" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ds.hdfs.Client" />
       <module name="MapReduceNonMaven" />
@@ -135,7 +139,7 @@
       <updated>1585795389283</updated>
       <workItem from="1585795392412" duration="1357000" />
       <workItem from="1585797465180" duration="60117000" />
-      <workItem from="1586539178493" duration="2596000" />
+      <workItem from="1586539178493" duration="10384000" />
     </task>
     <servers />
   </component>
@@ -171,22 +175,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586371093372" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586541775716">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586550418502">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586541775716" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586541775716">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586550418502" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586550418502">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586541775716" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586541775715">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586550418502" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586550418502">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586541775715" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586541775716">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586550418502" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586550418502">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586541775716" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586550418502" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1586371138933">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -121,11 +121,18 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         String fileName = requestFileHandle.getFileName();
 
         ReentrantReadWriteLock lock = this.fileLocks.get(fileName);
+
+        /*
+        System.out.println(fileName);
+
         if(lock == null){
             System.out.println("Uh oh! lock is null!");
             System.out.println(Collections.list(this.fileLocks.keys()));
         }
-        if(lock.isWriteLockedByCurrentThread()){
+
+         */
+
+        if(lock.isWriteLocked()){
             ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
             writeLock.unlock();
         }else{
@@ -214,7 +221,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             // This part locks the file handle once it has been created
             if(!this.fileLocks.containsKey(fileName)){
                 // File has not yet been initialized by another thread so create file handle
-                this.fileLocks.putIfAbsent(fileName, new ReentrantReadWriteLock());
+                this.fileLocks.put(fileName, new ReentrantReadWriteLock());
             }else{
                 // Another thread has already initialized the file so return error
                 ProtoHDFS.Response.Builder responseBuilder = ProtoHDFS.Response.newBuilder();
@@ -423,6 +430,14 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
             scheduledExecutorService.scheduleAtFixedRate(
                     new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
+
+            /*
+            while(true){
+                System.out.println(newNameNode.fileLocks.values());
+                Thread.sleep(3);
+            }
+
+             */
 
             /*
             while(true){
