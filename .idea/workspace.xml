@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9d29e9a7-e5e9-4e29-a745-5219508b991b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/ConfigureNameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/ConfigureNameNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +45,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.ConfigureNameNode">
+  <component name="RunManager" selected="Application.ConfigureHDFS">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ds.hdfs.Client" />
       <module name="MapReduceNonMaven" />
@@ -67,7 +65,7 @@
     <configuration name="ConfigureHDFS" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ds.hdfs.ConfigureHDFS" />
       <module name="MapReduceNonMaven" />
-      <option name="PROGRAM_PARAMETERS" value="100 3" />
+      <option name="PROGRAM_PARAMETERS" value="100 2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -97,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585795389283</updated>
       <workItem from="1585795392412" duration="1357000" />
-      <workItem from="1585797465180" duration="45376000" />
+      <workItem from="1585797465180" duration="48618000" />
     </task>
     <servers />
   </component>
@@ -109,10 +107,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1585795655970" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586391343344">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586486268364">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1586391343344" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1586486268364" />
     <state x="548" y="117" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1586390455990">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -125,29 +123,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586371093372" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586391166278">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586486281415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586391166278" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586391166278">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586486281415" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586486281415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586391166278" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586391166278">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586486281415" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586486281415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586391166278" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586391166278">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586486281415" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586486281415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586391166278" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586486281415" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1586371138933">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586371138933" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1586368239866">
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1586409835881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586368239866" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586409835881" />
   </component>
 </project>
