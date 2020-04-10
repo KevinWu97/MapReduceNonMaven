@@ -24,6 +24,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
+    protected static Registry dataServerRegistry;
+
     // This data structure allows thread safe access to the blocks of this specific data node
     protected ConcurrentHashMap<String, Boolean> requestsFulfilled;
     protected ConcurrentHashMap<String, ProtoHDFS.BlockMeta> blockMetas;
@@ -250,11 +252,11 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
             int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
 
-            Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
+            dataServerRegistry = LocateRegistry.createRegistry(dataPort);
             DataNode newDataNode = (args.length == 0) ? new DataNode(dataNodeId, dataNodeIp) :
                     new DataNode(dataNodeId, dataNodeIp, dataPort);
 
-            serverRegistry.bind(dataNodeId, newDataNode);
+            dataServerRegistry.bind(dataNodeId, newDataNode);
 
             // Now create directory to store all the blocks on this data node
             File dataNodeDir = new File("./" + dataNodeId);
