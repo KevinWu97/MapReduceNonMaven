@@ -150,7 +150,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         int blockNumber = blockMeta.getBlockNumber();
         int repNumber = blockMeta.getRepNumber();
 
-        if(blockList.size() > 1){
+        if(blockList.size() > 0){
             // Send a 'request' object to the next data node to replicate block on another data node
             // if the number of replicas is not enough
             ProtoHDFS.Request.Builder requestBuilder = ProtoHDFS.Request.newBuilder();
