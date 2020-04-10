@@ -121,6 +121,10 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         String fileName = requestFileHandle.getFileName();
 
         ReentrantReadWriteLock lock = this.fileLocks.get(fileName);
+        if(lock == null){
+            System.out.println("Uh oh! lock is null!");
+            System.out.println(Collections.list(this.fileLocks.keys()));
+        }
         if(lock.isWriteLockedByCurrentThread()){
             ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
             writeLock.unlock();
@@ -254,7 +258,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
                     .filter(nodeMeta -> Duration.between(heartbeatTimestamps.get(nodeMeta.getId()),
                             Instant.now()).toMillis() < 5000)
                     .collect(Collectors.toCollection(ArrayList::new));
-            Collections.shuffle(dataNodesList);
+            Collections.shuffle(activeDataNodes);
             List<ProtoHDFS.NodeMeta> selectedDataNodes = activeDataNodes.subList(0, repFactor);
 
             for(int j = 0; j < repFactor; j++){
