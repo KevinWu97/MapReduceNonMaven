@@ -227,8 +227,12 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         while(true){
             try{
                 Registry registry = LocateRegistry.getRegistry(dataIp, port);
-                return (DataNodeInterface)registry.lookup(dataId);
-            }catch(Exception ignored){}
+                DataNodeInterface dataStub = (DataNodeInterface)registry.lookup(dataId);
+                System.out.println("Data Node Found!");
+                return dataStub;
+            }catch(Exception e){
+                System.out.println("Searching for data node");
+            }
         }
     }
 
@@ -236,8 +240,12 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         while(true){
             try{
                 Registry registry = LocateRegistry.getRegistry(nameIp, port);
-                return (NameNodeInterface)registry.lookup(nameId);
-            }catch(Exception ignored){}
+                NameNodeInterface nameStub = (NameNodeInterface)registry.lookup(nameId);
+                System.out.println("Name Node Found!");
+                return nameStub;
+            }catch(Exception e){
+                System.out.println("Searching for name node");
+            }
         }
     }
 
