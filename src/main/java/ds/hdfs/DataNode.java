@@ -311,7 +311,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                     throw new Exception("Failed to create data node directory");
                 }
             }
-            
+
              */
 
             System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);

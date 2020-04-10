@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
@@ -439,6 +440,13 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             }
 
              */
+
+            while(true){
+                ArrayList<Instant> instants = newNameNode.heartbeatTimestamps.values().stream()
+                        .filter(v -> Duration.between(v, Instant.now()).toMillis() < 5000)
+                        .collect(Collectors.toCollection(ArrayList::new));
+                System.out.println(instants);
+            }
 
             /*
             while(true){
