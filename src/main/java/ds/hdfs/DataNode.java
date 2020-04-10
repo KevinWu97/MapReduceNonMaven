@@ -258,6 +258,15 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
 
             // Now create directory to store all the blocks on this data node
             File dataNodeDir = new File("./" + dataNodeId);
+            if(!dataNodeDir.exists()){
+                boolean dirCreated = dataNodeDir.mkdir();
+                if(!dirCreated){
+                    // If the data node directory has not been created, throw exception and stop the thing
+                    throw new Exception("Failed to create data node directory");
+                }
+            }
+
+            /*
             if(dataNodeDir.exists()){
                 // If data node directory already exists, that means the data node has failed before and is restarting
                 File[] dataNodeFiles = dataNodeDir.listFiles();
@@ -302,6 +311,8 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                     throw new Exception("Failed to create data node directory");
                 }
             }
+            
+             */
 
             System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
 
