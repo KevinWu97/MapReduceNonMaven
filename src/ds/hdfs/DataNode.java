@@ -130,6 +130,18 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         List<ProtoHDFS.Block> requestBlockList = request.getBlockList();
         LinkedList<ProtoHDFS.Block> blockList = new LinkedList<>(requestBlockList);
 
+        System.out.println(blockList.size());
+
+        if(blockList.size() == 0){
+            ProtoHDFS.Response.Builder responseBuilder = ProtoHDFS.Response.newBuilder();
+            responseBuilder.setResponseId(requestId);
+            responseBuilder.setResponseType(ProtoHDFS.Response.ResponseType.SUCCESS);
+            responseBuilder.setErrorMessage("All replications successful");
+            ProtoHDFS.Response response = responseBuilder.buildPartial();
+            responseBuilder.clear();
+            return response.toByteArray();
+        }
+
         ProtoHDFS.Block block = blockList.pop();
         ProtoHDFS.BlockMeta blockMeta = block.getBlockMeta();
         String blockContents = block.getBlockContents();

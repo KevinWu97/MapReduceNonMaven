@@ -28,8 +28,8 @@ public class Client {
     public static NameNodeInterface getNameStub(String nameId, String nameIp, int port){
         while(true){
             try{
-                Registry registry = LocateRegistry.getRegistry(nameId, port);
-                return (NameNodeInterface)registry.lookup(nameIp);
+                Registry registry = LocateRegistry.getRegistry(nameIp, port);
+                return (NameNodeInterface)registry.lookup(nameId);
             }catch(Exception ignored){}
         }
     }
@@ -55,6 +55,8 @@ public class Client {
             File hdfsPropFile = new File("hdfs.properties");
             FileInputStream hdfsPropInputStream = new FileInputStream(hdfsPropFile);
             hdfsProp.load(hdfsPropInputStream);
+
+            System.out.println("reached here 1");
 
             int blockSize = Integer.parseInt(hdfsProp.getProperty("block_size", "64000000"));
             int numBlocks = (int) (file.length() / blockSize + 1);
@@ -376,10 +378,10 @@ public class Client {
         try{
             switch (args[0]) {
                 case "put":
-                    putFile(args[0], args[1]);
+                    putFile(args[1], args[2]);
                     break;
                 case "get":
-                    getFile(args[0], args[1]);
+                    getFile(args[1], args[2]);
                     break;
                 case "list":
                     list();
