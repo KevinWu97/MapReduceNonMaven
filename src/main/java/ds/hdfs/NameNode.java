@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
 public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
-    protected static Registry serverRegistry;
+    protected Registry serverRegistry;
     protected ConcurrentHashMap<String, Boolean> requestsFulfilled;
     protected ConcurrentHashMap<String, ProtoHDFS.NodeMeta> dataNodeMetas;
     protected ConcurrentHashMap<String, Instant> heartbeatTimestamps;
@@ -421,7 +421,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
             String nodeIp = prop.getProperty("server_ip");
             int nodePort = Integer.parseInt(prop.getProperty("server_port"));
 
-            serverRegistry = LocateRegistry.createRegistry(nodePort);
+            Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
             NameNode newNameNode =
                     (args.length == 0) ? new NameNode(nodeName, nodeIp) : new NameNode(nodeName, nodeIp, nodePort);
             serverRegistry.bind(nodeName, newNameNode);
