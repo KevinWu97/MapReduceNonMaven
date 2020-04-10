@@ -2,18 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d29e9a7-e5e9-4e29-a745-5219508b991b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random_text1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapReduceNonMaven.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MapReduceNonMaven.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/DataNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/DataNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/NameNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/NameNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/DataNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/DataNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ds/hdfs/NameNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/BuildProto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/ConfigureDataNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/ConfigureHDFS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/ConfigureNameNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/DataNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/DataNodeInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/NameNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/NameNodeInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/PipelineSorter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/PrintAvailableDataNodesTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/RepSorter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/SendHeartbeatBlockReportTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/ds/hdfs/hdfs.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/jars/protobuf-java-3.11.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/jars/protobuf-java-util-3.11.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Block$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Block$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Block.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockMeta$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockMeta$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockMeta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockMetaOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockReport$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockReport$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$BlockReportOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$FileHandle$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$FileHandle$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$FileHandle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$FileHandleOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Heartbeat$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Heartbeat$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Heartbeat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$HeartbeatOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponse$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponse$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponse$ResponseType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponse$ResponseType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ListResponseOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$NodeMeta$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$NodeMeta$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$NodeMeta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$NodeMetaOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Pipeline$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Pipeline$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Pipeline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$PipelineOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Request$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Request$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Request$RequestType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Request$RequestType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Request.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$RequestOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Response$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Response$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Response$ResponseType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Response$ResponseType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$Response.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS$ResponseOrBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MapReduceNonMaven/proto/ProtoHDFS.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +107,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kevin Wu\IdeaProjects\MapReduceNonMaven\src\main\java" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.ClientStore">
     <configuration name="ClientStore" type="Application" factoryName="Application">
@@ -101,7 +158,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NameNode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="NameNode" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ds.hdfs.NameNode" />
       <module name="MapReduceNonMaven" />
       <extension name="coverage">
@@ -124,7 +181,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NameNode" />
         <item itemvalue="Application.DataNode" />
       </list>
     </recent_temporary>
@@ -140,7 +196,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585795389283</updated>
       <workItem from="1585795392412" duration="1357000" />
-      <workItem from="1585797465180" duration="59173000" />
+      <workItem from="1585797465180" duration="60117000" />
     </task>
     <servers />
   </component>
@@ -148,14 +204,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Project_Structure" timestamp="1585795655970">
+    <state x="361" y="71" key="#Project_Structure" timestamp="1586538928507">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1585795655970" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586504030846">
+    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1586538928507" />
+    <state x="318" y="99" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586538890053">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1586504030846" />
+    <state x="318" y="99" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1586538890053" />
     <state x="548" y="117" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1586390455990">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -164,6 +220,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586040532852" />
+    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586538875439">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1586538875439" />
     <state x="400" y="101" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586534867746">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -172,22 +232,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586371093372" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586505148423">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586539089146">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586505148423" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586505148422">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586539089146" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586539089146">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586505148422" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586505148421">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586539089146" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586539089146">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586505148421" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586505148422">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586539089146" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586539089146">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586505148422" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586539089146" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1586371138933">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
