@@ -219,8 +219,8 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
     public NameNodeInterface getNNStub(String nameId, String nameIp, int port){
         while(true){
             try{
-                Registry registry = LocateRegistry.getRegistry(nameId, port);
-                return (NameNodeInterface)registry.lookup(nameIp);
+                Registry registry = LocateRegistry.getRegistry(nameIp, port);
+                return (NameNodeInterface)registry.lookup(nameId);
             }catch(Exception ignored){}
         }
     }
