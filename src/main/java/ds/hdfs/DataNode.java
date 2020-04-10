@@ -280,16 +280,13 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                         String fileName = blockName.substring(0, firstUnderIndex);
                         int blockNumber = Integer.parseInt(blockName.substring(firstUnderIndex + 1, secondUnderIndex));
                         int repNumber = Integer.parseInt(blockName.substring(secondUnderIndex + 1));
-                        String dataId = newDataNode.dataId;
-                        String dataIp = newDataNode.dataIp;
-                        int port = newDataNode.dataPort;
 
                         blockMetaBuilder.setFileName(fileName);
                         blockMetaBuilder.setBlockNumber(blockNumber);
                         blockMetaBuilder.setRepNumber(repNumber);
-                        blockMetaBuilder.setDataIp(dataId);
-                        blockMetaBuilder.setDataIp(dataIp);
-                        blockMetaBuilder.setPort(port);
+                        blockMetaBuilder.setDataIp(dataNodeId);
+                        blockMetaBuilder.setDataIp(dataNodeIp);
+                        blockMetaBuilder.setPort(dataPort);
                         blockMetaBuilder.setInitialized(true);
                         ProtoHDFS.BlockMeta blockMeta = blockMetaBuilder.build();
                         blockMetaBuilder.clear();
@@ -323,9 +320,6 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                     new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
                     0, 2, TimeUnit.SECONDS);
 
-            while(true){
-                System.out.print("");
-            }
         }catch(Exception e){
             System.out.println("An error has occurred: " + e.getMessage());
         }
