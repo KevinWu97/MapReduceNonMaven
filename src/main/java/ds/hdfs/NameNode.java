@@ -266,6 +266,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
                             Instant.now()).toMillis() < 5000)
                     .collect(Collectors.toCollection(ArrayList::new));
             Collections.shuffle(activeDataNodes);
+            System.out.println("number of active nodes is: " + activeDataNodes.size());
             List<ProtoHDFS.NodeMeta> selectedDataNodes = activeDataNodes.subList(0, repFactor);
 
             for(int j = 0; j < repFactor; j++){

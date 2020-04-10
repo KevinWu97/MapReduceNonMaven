@@ -322,6 +322,10 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             scheduledExecutorService.scheduleAtFixedRate(
                     new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
                     0, 2, TimeUnit.SECONDS);
+
+            while(true){
+                System.out.print("");
+            }
         }catch(Exception e){
             System.out.println("An error has occurred: " + e.getMessage());
         }
