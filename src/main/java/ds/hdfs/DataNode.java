@@ -276,12 +276,14 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                 String dataNodeId = InetAddress.getLocalHost().getHostName();
                 String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
                 int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
+                DataNode newDataNode = null;
 
-                Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
-                DataNode newDataNode = (args.length == 0) ? getDataNodeInstance(dataNodeId, dataNodeIp) :
-                        getDataNodeInstance(dataNodeId, dataNodeIp, dataPort);
-
-                serverRegistry.bind(dataNodeId, newDataNode);
+                if(dataNodeInstance == null){
+                    Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
+                    newDataNode = (args.length == 0) ? getDataNodeInstance(dataNodeId, dataNodeIp) :
+                            getDataNodeInstance(dataNodeId, dataNodeIp, dataPort);
+                    serverRegistry.bind(dataNodeId, newDataNode);
+                }
 
                 // Now create directory to store all the blocks on this data node
                 File dataNodeDir = new File("./" + dataNodeId);

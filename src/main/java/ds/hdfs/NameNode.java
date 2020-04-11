@@ -439,12 +439,14 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
                 String nodeName = prop.getProperty("server_name");
                 String nodeIp = prop.getProperty("server_ip");
                 int nodePort = Integer.parseInt(prop.getProperty("server_port"));
+                NameNode newNameNode = null;
 
-                Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
-                NameNode newNameNode =
-                        (args.length == 0) ? getNameNodeInstance(nodeName, nodeIp) :
-                                getNameNodeInstance(nodeName, nodeIp, nodePort);
-                serverRegistry.bind(nodeName, newNameNode);
+                if(nameNodeInstance == null){
+                    Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
+                    newNameNode = (args.length == 0) ? getNameNodeInstance(nodeName, nodeIp) :
+                            getNameNodeInstance(nodeName, nodeIp, nodePort);
+                    serverRegistry.bind(nodeName, newNameNode);
+                }
 
                 System.out.println("Name Node " + nodeName + " is running on host " + nodeIp + " port " + nodePort);
 
