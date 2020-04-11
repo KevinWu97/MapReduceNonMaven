@@ -33,7 +33,9 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
     protected String nameIp;
     protected int port;
 
-    protected NameNode(String nodeId, String nodeIp) throws RemoteException {
+    private static NameNode nameNodeInstance = null;
+
+    private NameNode(String nodeId, String nodeIp) throws RemoteException {
         super();
         this.requestsFulfilled = new ConcurrentHashMap<>();
         this.dataNodeMetas = new ConcurrentHashMap<>();
@@ -45,7 +47,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         this.nameIp = nodeIp;
     }
 
-    protected NameNode(String nodeId, String nodeIp, int port) throws RemoteException {
+    private NameNode(String nodeId, String nodeIp, int port) throws RemoteException {
         super(port);
         this.requestsFulfilled = new ConcurrentHashMap<>();
         this.dataNodeMetas = new ConcurrentHashMap<>();
@@ -56,6 +58,21 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         this.nameId = nodeId;
         this.nameIp = nodeIp;
         this.port = port;
+    }
+
+    // Overloaded singleton pattern
+    public static NameNode getNameNodeInstance(String nodeId, String nodeIp) throws RemoteException{
+        if(nameNodeInstance == null){
+            nameNodeInstance = new NameNode(nodeId, nodeIp);
+        }
+        return nameNodeInstance;
+    }
+
+    public static NameNode getNameNodeInstance(String nodeId, String nodeIp, int port) throws RemoteException{
+        if(nameNodeInstance == null){
+            nameNodeInstance = new NameNode(nodeId, nodeIp, port);
+        }
+        return nameNodeInstance;
     }
 
     @Override
@@ -413,25 +430,27 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
     public static void main(String[] args){
         // Starts up the name node server
-        Properties prop = new Properties();
-        File propFile = new File("namenode.properties");
-        try{
-            FileInputStream fileInputStream = new FileInputStream(propFile);
-            prop.load(fileInputStream);
-            String nodeName = prop.getProperty("server_name");
-            String nodeIp = prop.getProperty("server_ip");
-            int nodePort = Integer.parseInt(prop.getProperty("server_port"));
+        while(true){
+            Properties prop = new Properties();
+            File propFile = new File("namenode.properties");
+            try{
+                FileInputStream fileInputStream = new FileInputStream(propFile);
+                prop.load(fileInputStream);
+                String nodeName = prop.getProperty("server_name");
+                String nodeIp = prop.getProperty("server_ip");
+                int nodePort = Integer.parseInt(prop.getProperty("server_port"));
 
-            Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
-            NameNode newNameNode =
-                    (args.length == 0) ? new NameNode(nodeName, nodeIp) : new NameNode(nodeName, nodeIp, nodePort);
-            serverRegistry.bind(nodeName, newNameNode);
+                Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
+                NameNode newNameNode =
+                        (args.length == 0) ? getNameNodeInstance(nodeName, nodeIp) :
+                                getNameNodeInstance(nodeName, nodeIp, nodePort);
+                serverRegistry.bind(nodeName, newNameNode);
 
-            System.out.println("Name Node " + nodeName + " is running on host " + nodeIp + " port " + nodePort);
+                System.out.println("Name Node " + nodeName + " is running on host " + nodeIp + " port " + nodePort);
 
-            ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-            scheduledExecutorService.scheduleAtFixedRate(
-                    new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
+                ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+                scheduledExecutorService.scheduleAtFixedRate(
+                        new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
 
             /*
             while(true){
@@ -441,12 +460,15 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
              */
 
+            /*
             while(true){
                 ArrayList<Instant> instants = newNameNode.heartbeatTimestamps.values().stream()
                         .filter(v -> Duration.between(v, Instant.now()).toMillis() < 5000)
                         .collect(Collectors.toCollection(ArrayList::new));
                 System.out.println(instants);
             }
+
+             */
 
             /*
             while(true){
@@ -459,8 +481,9 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
              */
 
-        }catch(Exception e){
-            System.out.println("Error occurred when starting the Name Node: " + e.getMessage());
+            }catch(Exception e){
+                System.out.println("Error occurred when starting the Name Node: " + e.getMessage());
+            }
         }
     }
 }

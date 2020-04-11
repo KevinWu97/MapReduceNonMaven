@@ -32,7 +32,9 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
     protected String dataIp;
     protected int dataPort;
 
-    protected DataNode(String dataId, String dataIp) throws RemoteException {
+    private static DataNode dataNodeInstance = null;
+
+    private DataNode(String dataId, String dataIp) throws RemoteException {
         super();
         this.dataId = dataId;
         this.dataIp = dataIp;
@@ -41,13 +43,28 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         this.blockMetas = new ConcurrentHashMap<>();
     }
 
-    protected DataNode(String dataId, String dataIp, int port) throws RemoteException {
+    private DataNode(String dataId, String dataIp, int port) throws RemoteException {
         super(port);
         this.dataId = dataId;
         this.dataIp = dataIp;
         this.dataPort = port;
         this.requestsFulfilled = new ConcurrentHashMap<>();
         this.blockMetas = new ConcurrentHashMap<>();
+    }
+
+    // Overloaded singleton pattern
+    public static DataNode getDataNodeInstance(String nodeId, String nodeIp) throws RemoteException{
+        if(dataNodeInstance == null){
+            dataNodeInstance = new DataNode(nodeId, nodeIp);
+        }
+        return dataNodeInstance;
+    }
+
+    public static DataNode getDataNodeInstance(String nodeId, String nodeIp, int port) throws RemoteException{
+        if(dataNodeInstance == null){
+            dataNodeInstance = new DataNode(nodeId, nodeIp, port);
+        }
+        return dataNodeInstance;
     }
 
     @Override
@@ -249,30 +266,32 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // Upon startup of the data node
-        Properties prop = new Properties();
-        try{
-            // Bind data node to registry
-            String dataNodeId = InetAddress.getLocalHost().getHostName();
-            String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
-            int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
 
-            Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
-            DataNode newDataNode = (args.length == 0) ? new DataNode(dataNodeId, dataNodeIp) :
-                    new DataNode(dataNodeId, dataNodeIp, dataPort);
+        while (true) {
+            Properties prop = new Properties();
+            try {
+                // Bind data node to registry
+                String dataNodeId = InetAddress.getLocalHost().getHostName();
+                String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
+                int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
 
-            serverRegistry.bind(dataNodeId, newDataNode);
+                Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
+                DataNode newDataNode = (args.length == 0) ? getDataNodeInstance(dataNodeId, dataNodeIp) :
+                        getDataNodeInstance(dataNodeId, dataNodeIp, dataPort);
 
-            // Now create directory to store all the blocks on this data node
-            File dataNodeDir = new File("./" + dataNodeId);
-            if(!dataNodeDir.exists()){
-                boolean dirCreated = dataNodeDir.mkdir();
-                if(!dirCreated){
-                    // If the data node directory has not been created, throw exception and stop the thing
-                    throw new Exception("Failed to create data node directory");
+                serverRegistry.bind(dataNodeId, newDataNode);
+
+                // Now create directory to store all the blocks on this data node
+                File dataNodeDir = new File("./" + dataNodeId);
+                if (!dataNodeDir.exists()) {
+                    boolean dirCreated = dataNodeDir.mkdir();
+                    if (!dirCreated) {
+                        // If the data node directory has not been created, throw exception and stop the thing
+                        throw new Exception("Failed to create data node directory");
+                    }
                 }
-            }
 
             /*
             if(dataNodeDir.exists()){
@@ -322,25 +341,26 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
 
              */
 
-            System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
+                System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
 
-            // Gets the file handle to the namenode.properties file
-            File propFile = new File("namenode.properties");
-            FileInputStream fileInputStream = new FileInputStream(propFile);
-            prop.load(fileInputStream);
+                // Gets the file handle to the namenode.properties file
+                File propFile = new File("namenode.properties");
+                FileInputStream fileInputStream = new FileInputStream(propFile);
+                prop.load(fileInputStream);
 
-            String nameNodeId = prop.getProperty("server_name");
-            String nameNodeIp = prop.getProperty("server_ip");
-            int namePort = Integer.parseInt(prop.getProperty("server_port"));
+                String nameNodeId = prop.getProperty("server_name");
+                String nameNodeIp = prop.getProperty("server_ip");
+                int namePort = Integer.parseInt(prop.getProperty("server_port"));
 
-            // Connect data node to the name node and start sending heartbeats and block reports
-            ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-            scheduledExecutorService.scheduleAtFixedRate(
-                    new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
-                    0, 2, TimeUnit.SECONDS);
+                // Connect data node to the name node and start sending heartbeats and block reports
+                ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+                scheduledExecutorService.scheduleAtFixedRate(
+                        new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
+                        0, 2, TimeUnit.SECONDS);
 
-        }catch(Exception e){
-            System.out.println("An error has occurred: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("An error has occurred: " + e.getMessage());
+            }
         }
     }
 }
