@@ -188,14 +188,15 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
         ProtoHDFS.FileHandle.Builder fileHandleBuilder = ProtoHDFS.FileHandle.newBuilder();
         ProtoHDFS.Pipeline.Builder pipeLineBuilder = ProtoHDFS.Pipeline.newBuilder();
 
-        for(ProtoHDFS.Pipeline p : pipelines){
-            p.getBlocksList().sort(new RepSorter());
-            ArrayList<ProtoHDFS.Block> newBlocksList = p.getBlocksList().stream()
+        for(int i = 0; i < pipelines.size(); i++){
+            // p.getBlocksList().sort(new RepSorter());
+            ArrayList<ProtoHDFS.Block> newBlocksList = pipelines.get(i).getBlocksList().stream()
                     .filter(ProtoHDFS.Block::isInitialized)
                     .filter(block -> Duration.between(this.heartbeatTimestamps.get(block.getBlockMeta().getDataId()),
                             Instant.now()).toMillis() < 5000)
                     .collect(Collectors.toCollection(ArrayList::new));
 
+            pipeLineBuilder.setPipelineNumber(i);
             pipeLineBuilder.addAllBlocks(newBlocksList);
             ProtoHDFS.Pipeline newPipeline = pipeLineBuilder.build();
             pipeLineBuilder.clear();

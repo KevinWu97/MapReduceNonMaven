@@ -196,7 +196,7 @@ public class Client {
         }
     }
 
-    public static void getFile(String localFile, String hdfsFile) {
+    public static void getFile(String hdfsFile, String localFile) {
         System.out.println("Going to get " + hdfsFile);
         // This file handle is for the local file you want to read to
         File file = new File(localFile);
@@ -321,6 +321,7 @@ public class Client {
             }
         }catch(Exception e){
             System.out.println("File " + hdfsFile + " not found in HDFS while reading to " + localFile);
+            e.printStackTrace();
         }
     }
 

@@ -245,10 +245,10 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             try{
                 Registry registry = LocateRegistry.getRegistry(dataIp, port);
                 DataNodeInterface dataStub = (DataNodeInterface)registry.lookup(dataId);
-                System.out.println("Data Node Found!");
+                // System.out.println("Data Node Found!");
                 return dataStub;
             }catch(Exception e){
-                System.out.println("Searching for data node");
+                // System.out.println("Searching for data node");
             }
         }
     }
@@ -258,10 +258,10 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
             try{
                 Registry registry = LocateRegistry.getRegistry(nameIp, port);
                 NameNodeInterface nameStub = (NameNodeInterface)registry.lookup(nameId);
-                System.out.println("Name Node Found!");
+                // System.out.println("Name Node Found!");
                 return nameStub;
             }catch(Exception e){
-                System.out.println("Searching for name node");
+                // System.out.println("Searching for name node");
             }
         }
     }
@@ -342,7 +342,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
 
              */
 
-                System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
+                // System.out.println("Data Node " + dataNodeId + " is running on host " + dataNodeIp + " port " + dataPort);
 
                 // Gets the file handle to the namenode.properties file
                 File propFile = new File("namenode.properties");
