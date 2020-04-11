@@ -453,6 +453,8 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
                 scheduledExecutorService.scheduleAtFixedRate(
                         new PrintAvailableDataNodesTask(nameNodeInstance), 0, 2, TimeUnit.SECONDS);
 
+                Thread.sleep(2000);
+
             /*
             while(true){
                 System.out.println(newNameNode.fileLocks.values());

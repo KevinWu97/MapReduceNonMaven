@@ -359,6 +359,7 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                         new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, dataNodeInstance),
                         0, 2, TimeUnit.SECONDS);
 
+                Thread.sleep(2000);
             } catch (Exception e) {
                 System.out.println("An error has occurred: " + e.getMessage());
                 e.printStackTrace();
