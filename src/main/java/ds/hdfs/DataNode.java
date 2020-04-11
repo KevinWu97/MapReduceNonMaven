@@ -276,11 +276,10 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                 String dataNodeId = InetAddress.getLocalHost().getHostName();
                 String dataNodeIp = InetAddress.getLocalHost().getHostAddress();
                 int dataPort = (args.length == 0) ? 1099 : Integer.parseInt(args[0]);
-                DataNode newDataNode = null;
 
                 if(dataNodeInstance == null){
                     Registry serverRegistry = LocateRegistry.createRegistry(dataPort);
-                    newDataNode = (args.length == 0) ? getDataNodeInstance(dataNodeId, dataNodeIp) :
+                    DataNode newDataNode = (args.length == 0) ? getDataNodeInstance(dataNodeId, dataNodeIp) :
                             getDataNodeInstance(dataNodeId, dataNodeIp, dataPort);
                     serverRegistry.bind(dataNodeId, newDataNode);
                 }
@@ -357,11 +356,13 @@ public class DataNode extends UnicastRemoteObject implements DataNodeInterface {
                 // Connect data node to the name node and start sending heartbeats and block reports
                 ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
                 scheduledExecutorService.scheduleAtFixedRate(
-                        new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, newDataNode),
+                        new SendHeartbeatBlockReportTask(nameNodeId, nameNodeIp, namePort, dataNodeInstance),
                         0, 2, TimeUnit.SECONDS);
 
             } catch (Exception e) {
                 System.out.println("An error has occurred: " + e.getMessage());
+                e.printStackTrace();
+                return;
             }
         }
     }

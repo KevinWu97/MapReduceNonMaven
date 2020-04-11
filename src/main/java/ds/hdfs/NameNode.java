@@ -439,11 +439,10 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
                 String nodeName = prop.getProperty("server_name");
                 String nodeIp = prop.getProperty("server_ip");
                 int nodePort = Integer.parseInt(prop.getProperty("server_port"));
-                NameNode newNameNode = null;
 
                 if(nameNodeInstance == null){
                     Registry serverRegistry = LocateRegistry.createRegistry(nodePort);
-                    newNameNode = (args.length == 0) ? getNameNodeInstance(nodeName, nodeIp) :
+                    NameNode newNameNode = (args.length == 0) ? getNameNodeInstance(nodeName, nodeIp) :
                             getNameNodeInstance(nodeName, nodeIp, nodePort);
                     serverRegistry.bind(nodeName, newNameNode);
                 }
@@ -452,7 +451,7 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
                 ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
                 scheduledExecutorService.scheduleAtFixedRate(
-                        new PrintAvailableDataNodesTask(newNameNode), 0, 2, TimeUnit.SECONDS);
+                        new PrintAvailableDataNodesTask(nameNodeInstance), 0, 2, TimeUnit.SECONDS);
 
             /*
             while(true){
@@ -485,6 +484,8 @@ public class NameNode extends UnicastRemoteObject implements NameNodeInterface {
 
             }catch(Exception e){
                 System.out.println("Error occurred when starting the Name Node: " + e.getMessage());
+                e.printStackTrace();
+                return;
             }
         }
     }
